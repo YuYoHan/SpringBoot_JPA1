@@ -1,4 +1,4 @@
-package com.example.jpabook.entity;
+package com.example.jpabook.entity.member;
 
 import lombok.Getter;
 

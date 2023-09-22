@@ -1,5 +1,6 @@
-package com.example.jpabook.entity;
+package com.example.jpabook.entity.member;
 
+import com.example.jpabook.entity.order.Order;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
