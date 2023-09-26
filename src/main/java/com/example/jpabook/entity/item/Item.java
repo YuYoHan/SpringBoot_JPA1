@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,11 +24,6 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-    @Builder
-    public Item(Long id, String name, int price, int stockQuantity) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
+    @ManyToMany(mappedBy = "items")
+    private List<Catagory> catagories = new ArrayList<>();
 }
