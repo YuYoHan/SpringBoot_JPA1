@@ -1,6 +1,7 @@
 package com.example.jpabook.entity.order;
 
 import com.example.jpabook.entity.member.Member;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,10 +24,10 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
     private LocalDateTime orderDate;
@@ -34,6 +35,23 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    @Builder
+    public Order(Long id,
+                 Member member,
+                 List<OrderItem> orderItems,
+                 Delivery delivery,
+                 LocalDateTime orderDate,
+                 OrderStatus status) {
+        this.id = id;
+        this.member = member;
+        this.orderItems = orderItems;
+        this.delivery = delivery;
+        this.orderDate = orderDate;
+        this.status = status;
 
+        if(member != null) {
+            member.getOrders().add(this);
+        }
 
+    }
 }

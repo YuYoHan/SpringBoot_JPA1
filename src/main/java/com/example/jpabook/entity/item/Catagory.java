@@ -1,5 +1,6 @@
 package com.example.jpabook.entity.item;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -32,4 +33,18 @@ public class Catagory {
 
     @OneToMany(mappedBy = "parent")
     private List<Catagory> child = new ArrayList<>();
+
+    @Builder
+    public Catagory(Long id, String name, List<Item> items, Catagory parent, List<Catagory> child) {
+        this.id = id;
+        this.name = name;
+        this.items = items;
+        this.parent = parent;
+        this.child = child;
+
+        // 연관관계 메소드
+        if(child != null) {
+            child.add(this);
+        }
+    }
 }

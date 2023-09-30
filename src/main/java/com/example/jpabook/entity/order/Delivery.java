@@ -1,6 +1,7 @@
 package com.example.jpabook.entity.order;
 
 import com.example.jpabook.entity.member.Address;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -24,4 +25,12 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
+
+    @Builder
+    public Delivery(Long id, Order order, Address address, DeliveryStatus status) {
+        this.id = id;
+        this.order = order;
+        this.address = address;
+        this.status = status;
+    }
 }
