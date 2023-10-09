@@ -31,7 +31,7 @@ class MemberRepositoryTest {
                 .build();
 
         // when
-        Long save = memberRepository.save(member);
+        memberRepository.save(member);
         Member findMember = memberRepository.find(save);
 
         // then
