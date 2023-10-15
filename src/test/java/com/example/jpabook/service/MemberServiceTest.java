@@ -34,7 +34,6 @@ public class MemberServiceTest {
 
         // then
         Assertions.assertThat(member).isEqualTo(memberRepository.findOne(join));
-
     }
 
     @Test
