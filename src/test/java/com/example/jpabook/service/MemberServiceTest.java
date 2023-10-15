@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.aspectj.bridge.MessageUtil.fail;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Transactional
@@ -37,7 +39,23 @@ public class MemberServiceTest {
 
     @Test
     public void 중복회원예외() throws Exception {
+        // given
+        Member member = Member.builder()
+                .userName("kim")
+                .build();
 
+        Member member2 = Member.builder()
+                .userName("kim")
+                .build();
+
+        // when
+        memberService.join(member);
+
+        // 예외 검사를 할 때 이 문법으로 처리해야 한다.
+       Assertions.assertThatThrownBy(() -> memberService.join(member2))
+                       .isInstanceOf(IllegalStateException.class);
+
+        // then
+        fail("예외가 발생해야 한다.");
     }
-
 }
