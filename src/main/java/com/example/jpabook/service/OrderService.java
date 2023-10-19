@@ -45,6 +45,13 @@ public class OrderService {
 
 
     // 취소
+    @Transactional
+    public void canelOrder(Long orderId) {
+        // 주문 회원 엔티티 조회
+        Order order = orderRepository.findOne(orderId);
+        // 주문취소
+        order.cancel();
+    }
 
     // 검색
 }

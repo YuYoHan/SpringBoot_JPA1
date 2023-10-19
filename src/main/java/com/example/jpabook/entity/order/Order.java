@@ -1,6 +1,7 @@
 package com.example.jpabook.entity.order;
 
 import com.example.jpabook.entity.member.Member;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id @GeneratedValue
@@ -53,6 +54,8 @@ public class Order {
             member.getOrders().add(this);
         }
     }
+
+
 
     public void addOrderItem(OrderItem orderItem) {
         this.orderItems.add(orderItem);

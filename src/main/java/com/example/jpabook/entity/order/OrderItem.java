@@ -1,7 +1,9 @@
 package com.example.jpabook.entity.order;
 
 import com.example.jpabook.entity.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "order_item")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id @GeneratedValue
@@ -26,6 +29,7 @@ public class OrderItem {
 
     private int orderPrice;     // 주문 가격
     private int count;          // 주문 수량
+
 
     // 생성 메소드
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
