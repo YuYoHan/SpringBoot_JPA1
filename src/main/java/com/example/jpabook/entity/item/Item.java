@@ -37,6 +37,7 @@ public abstract class Item {
         this.catagories = catagories;
     }
 
+
     // 비즈니스 로직
     // stock 증가
     public void addStock(int stockQuantity) {

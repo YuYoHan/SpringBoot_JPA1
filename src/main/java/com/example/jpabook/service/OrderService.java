@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -46,7 +48,7 @@ public class OrderService {
 
     // 취소
     @Transactional
-    public void canelOrder(Long orderId) {
+    public void cancelOrder(Long orderId) {
         // 주문 회원 엔티티 조회
         Order order = orderRepository.findOne(orderId);
         // 주문취소
@@ -54,4 +56,7 @@ public class OrderService {
     }
 
     // 검색
+//    public List<Order> findOrders(OrderSearch orderSearch) {
+//        return orderRepository.findAll(orderSearch);
+//    }
 }
