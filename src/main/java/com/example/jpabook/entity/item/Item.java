@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public abstract class Item {
         this.stockQuantity = stockQuantity;
         this.catagories = catagories;
     }
+
 
 
     // 비즈니스 로직
