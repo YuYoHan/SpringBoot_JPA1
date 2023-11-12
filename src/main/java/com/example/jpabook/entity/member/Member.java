@@ -1,6 +1,7 @@
 package com.example.jpabook.entity.member;
 
 import com.example.jpabook.entity.order.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Member {
     private Address address;
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     @Builder

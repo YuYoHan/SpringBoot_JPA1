@@ -1,6 +1,7 @@
 package com.example.jpabook.entity.order;
 
 import com.example.jpabook.entity.member.Address;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Delivery {
     private Long id;
 
     @OneToOne(mappedBy = "delivery")
+    @JsonIgnore
     private Order order;
 
     @Embedded
