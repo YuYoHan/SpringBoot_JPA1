@@ -44,6 +44,8 @@ public class OrderSimpleApiController {
 
     @GetMapping("/api/v2/simple-orderds")
     public List<SimpleOrderDTO> orderV2() {
+        // ORDER 2개
+        // N +1 문제 발생 → 회원 N + 배송 N
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
         List<SimpleOrderDTO> collect = all.stream()
                 .map(SimpleOrderDTO::new)
