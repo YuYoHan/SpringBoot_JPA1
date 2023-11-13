@@ -68,4 +68,15 @@ public class OrderSimpleApiController {
             address = order.getDelivery().getAddress(); // Lazy 초기화
         }
     }
+
+    @GetMapping("/api/v3/simple-orderds")
+    public List<SimpleOrderDTO> orderV3() {
+        // ORDER 2개
+        // N +1 문제 발생 → 회원 N + 배송 N
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
+        List<SimpleOrderDTO> result = orders.stream()
+                .map(SimpleOrderDTO::new)
+                .collect(Collectors.toList());
+        return result;
+    }
 }
