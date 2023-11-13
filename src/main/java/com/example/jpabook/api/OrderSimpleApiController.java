@@ -1,5 +1,6 @@
 package com.example.jpabook.api;
 
+import com.example.jpabook.domain.SimpleOrderQueryDTO;
 import com.example.jpabook.entity.member.Address;
 import com.example.jpabook.entity.order.Order;
 import com.example.jpabook.entity.order.OrderStatus;
@@ -79,4 +80,12 @@ public class OrderSimpleApiController {
                 .collect(Collectors.toList());
         return result;
     }
+
+    @GetMapping("/api/v4/simple-orderds")
+    public List<SimpleOrderQueryDTO> orderV4() {
+        // ORDER 2개
+        // N +1 문제 발생 → 회원 N + 배송 N
+        return orderRepository.findOrderDTO();
+    }
+
 }

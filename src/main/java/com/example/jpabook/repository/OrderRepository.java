@@ -1,5 +1,6 @@
 package com.example.jpabook.repository;
 
+import com.example.jpabook.domain.SimpleOrderQueryDTO;
 import com.example.jpabook.entity.order.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -108,5 +109,15 @@ public class OrderRepository {
                         " join fetch o.member" +
                         " join fetch o.delivery", Order.class
         ).getResultList();
+    }
+
+    public List<SimpleOrderQueryDTO> findOrderDTO() {
+        return em.createQuery(
+                "select new com.example.jpabook.domain.SimpleOrderQueryDTO(" +
+                        "o.id, m.userName, o.orderDate, o.status, d.address) " +
+                        " from Order o " +
+                        " join o.member m" +
+                        " join o.delivery d", SimpleOrderQueryDTO.class)
+                .getResultList();
     }
 }
