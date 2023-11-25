@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
@@ -65,6 +66,17 @@ public class OrderApiController {
     @GetMapping("/api/v2/orders")
     public List<OrderDTO> orderV2() {
         List<Order> orders = orderRepository.findAllWithItem();
+        return orders.stream()
+                .map(o -> new OrderDTO(o))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/api/v3/orders")
+    public List<OrderDTO> orderV3(
+            @RequestParam(value = "offset", defaultValue = "0") int offset,
+            @RequestParam(value = "limit", defaultValue = "100") int limit
+    ) {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
         return orders.stream()
                 .map(o -> new OrderDTO(o))
                 .collect(Collectors.toList());
