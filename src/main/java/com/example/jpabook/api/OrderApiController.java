@@ -1,11 +1,13 @@
 package com.example.jpabook.api;
 
+import com.example.jpabook.domain.OrderQueryDTO;
 import com.example.jpabook.entity.member.Address;
 import com.example.jpabook.entity.order.Order;
 import com.example.jpabook.entity.order.OrderItem;
 import com.example.jpabook.entity.order.OrderStatus;
 import com.example.jpabook.repository.OrderRepository;
 import com.example.jpabook.repository.OrderSearch;
+import com.example.jpabook.repository.order.query.OrderQueryRepository;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class OrderApiController {
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     @GetMapping("/api/v1/orders")
     public List<OrderDTO> orderV1() {
@@ -80,5 +83,10 @@ public class OrderApiController {
         return orders.stream()
                 .map(o -> new OrderDTO(o))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/api/v4/orders")
+    public List<OrderQueryDTO> ordersV4() {
+        orderQueryRepository.findOrderQueryDTOs();
     }
 }
