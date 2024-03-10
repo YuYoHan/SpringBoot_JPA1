@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 
 @Component
 @RequiredArgsConstructor
-public class InitDb {
+public class InitDB {
     private final InitService initService;
 
     @PostConstruct
